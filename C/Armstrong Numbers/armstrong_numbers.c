@@ -35,19 +35,26 @@ int main(int argc, char const *argv[]){
 /// @param candidate 
 /// @return true if candidate is an Armstrong number; otherwise false
 bool is_armstrong_number(int candidate) {
+
+    // Determine the length of candidate using log10 + 1
     int intLen = floor(log10(abs(candidate))) + 1;
+
     int sum, remainder;
     int digits[intLen];
     int candidateCopy = candidate;
 
+    // For the length of candidate, find its individual digit and
+    // add to digits array
     for (int i = 0; i < intLen; i++) {
         remainder = candidate % 10;
         digits[i] = remainder;
         candidate = floor(candidate / 10);
     }
 
-    for (int i = 0; i < intLen; i++) {
-        sum = sum + pow(digits[i], intLen);
+    // For each individual digit, find its summation when raising
+    // it to the power of length of candidate
+    for (int j = 0; j < intLen; j++) {
+        sum = sum + pow(digits[j], intLen);
     }
 
     if (sum == candidateCopy) {
